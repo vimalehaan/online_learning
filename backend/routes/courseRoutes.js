@@ -14,7 +14,7 @@ const {verifyToken} = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.get("/", getAllCourses);
+router.get("/", verifyToken, getAllCourses);
 router.get("/:id", getCourseById);
 router.get('/student/enrolled', verifyToken, getEnrolledCourses);
 router.get('/enrolledSt/:id', verifyToken, getEnrolledStudents);
