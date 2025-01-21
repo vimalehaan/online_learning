@@ -4,7 +4,8 @@ import {
   Container,
   Typography,
   CircularProgress,
-  Stack, Button,
+  Stack,
+  Button,
 } from "@mui/material";
 
 import CourseCard from "../Components/CourseCard";
@@ -12,7 +13,9 @@ import axios from "axios";
 import { AuthContext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../Components/NavBar";
-import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+
+import {API_BASE_URL} from "../config";
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ const StudentDashboard = () => {
     }
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/courses", {
+        const response = await axios.get( `${API_BASE_URL}/courses`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,7 +57,7 @@ const StudentDashboard = () => {
     navigate(`/course/${courseId}`);
   };
   const handleBotClick = () => {
-    navigate(`/aibot`);
+    navigate('/aibot', { state: { courses } });
   };
 
   return (
@@ -62,11 +65,19 @@ const StudentDashboard = () => {
       <NavBar />
       <Container maxWidth="lg" sx={{}}>
         <Box sx={{ width: "100%", minHeight: "100vh", p: 2 }}>
-          <Stack direction="row" sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Stack
+            direction="row"
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
             <Typography variant="h4" textAlign={"start"} fontWeight={"600"}>
               Courses
             </Typography>
-            <Button variant="contained" sx={{borderRadius: "15px"}} endIcon={<SmartToyIcon />} onClick={handleBotClick}>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: "15px" }}
+              endIcon={<SmartToyIcon />}
+              onClick={handleBotClick}
+            >
               AI Bot
             </Button>
           </Stack>

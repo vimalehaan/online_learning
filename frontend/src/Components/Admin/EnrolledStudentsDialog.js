@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/AuthContext";
+import {API_BASE_URL} from "../../config";
 
 const EnrolledStudentsDialog = ({ open, onClose, courseId }) => {
   const [students, setStudents] = useState([]);
@@ -32,7 +33,7 @@ const EnrolledStudentsDialog = ({ open, onClose, courseId }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:3001/courses/enrolledSt/${courseId}`,
+        `${API_BASE_URL}/courses/enrolledSt/${courseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
