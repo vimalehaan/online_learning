@@ -28,19 +28,12 @@ const formatResponseForFrontend = (text) => {
   return formattedHTML;
 };
 
-const getCourseSuggestions = async (userPrompt) => {
-  const courses = [
-    "Machine Learning",
-    "Software Engineering for Beginner",
-    "Software Architecture",
-    "Management",
-    "Operating System",
-  ];
+const getCourseSuggestions = async (userPrompt, courses) => {
   try {
     const detailedPrompt = `
         These are our courese ${courses} 
         Student prompt is :${userPrompt}
-        Suggest Courses from Our Courses
+        Suggest Courses from within in Our Courses only
     `;
 
     const response = await axios.post(
@@ -58,7 +51,6 @@ const getCourseSuggestions = async (userPrompt) => {
         },
       },
     );
-    console.log(response.data.choices[0].message.content);
     const completion = response.data.choices[0].message.content;
     return formatResponseForFrontend(completion);
   } catch (error) {

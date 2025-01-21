@@ -6,6 +6,7 @@ import AddCourseForm from "../../Components/Admin/AddCourseForm";
 import EditCourseForm from "../../Components/Admin/EditCourseForm";
 import { AuthContext } from "../../Contexts/AuthContext";
 import NavBar from "../../Components/NavBar";
+import {API_BASE_URL} from "../../config";
 
 const Dashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -18,7 +19,7 @@ const Dashboard = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/courses/instructor",
+          `${API_BASE_URL}/courses/instructor`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

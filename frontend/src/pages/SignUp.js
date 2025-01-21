@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 import { validateForm } from "../Functions/FormValidation";
 import AlertDialog from "../Components/Dialogs/AlertDialog";
+import {API_BASE_URL} from "../config";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const SignUp = () => {
       console.log("Form submitted", formData);
       try {
         const response = await axios.post(
-          "http://localhost:3001/auth/register",
+          `${API_BASE_URL}/auth/register`,
           {
             name: formData.name,
             email: formData.email,

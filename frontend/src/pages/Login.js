@@ -14,6 +14,7 @@ import {
   Stack,
 } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
+import {API_BASE_URL} from "../config";
 
 const Login = () => {
   const { logIn, user } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const Login = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/auth/login",
+        `${API_BASE_URL}/auth/login`,
         formData,
       );
 
