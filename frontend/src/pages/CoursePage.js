@@ -12,6 +12,7 @@ import {
 
 import { AuthContext } from "../Contexts/AuthContext";
 import NavBar from "../Components/NavBar";
+import {API_BASE_URL} from "../config";
 
 const CoursePage = () => {
 
@@ -25,8 +26,8 @@ const CoursePage = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/courses/${id}`);
-        setCourse(response.data); // Adjust based on your backend response format
+        const response = await axios.get(`${API_BASE_URL}/courses/${id}`);
+        setCourse(response.data);
         setError(null);
 
         const enrolled = response.data.course.studentsEnrolled.includes(
@@ -47,7 +48,6 @@ const CoursePage = () => {
     fetchCourse();
   }, [id, user]);
 
-  // console.log(course.course.title);
   const title = course?.course.title;
   const description = course?.course.description;
   const content = course?.course.content;

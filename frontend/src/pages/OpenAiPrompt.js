@@ -2,23 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import NavBar from "../Components/NavBar";
+import { useLocation } from "react-router-dom";
+import {API_BASE_URL} from "../config";
 
 const CourseSuggestion = () => {
+  const location = useLocation();
+  const courses = location.state?.courses;
+
   const [prompt, setPrompt] = useState("");
-  // const [preferredCourses, setPreferredCourses] = useState('');
   const [courseSuggestions, setCourseSuggestions] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    const courseTitles = courses.map((course) => course.title);
+    console.log(courseTitles);
     if (!prompt) return;
 
     setLoading(true);
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/openai/get-course-suggestions",
+        `${API_BASE_URL}/openai/get-course-suggestions`,
         {
           prompt: prompt,
+          courses: courseTitles,
         },
       );
       setCourseSuggestions(response.data.courseSuggestions);
@@ -42,17 +49,24 @@ const CourseSuggestion = () => {
             alignItems: "start",
           }}
         >
-          <Typography variant="h5" fontWeight={'bold'}>Get Course Recommendations</Typography>
+          <Typography variant="h5" fontWeight={"bold"}>
+            Get Course Recommendations
+          </Typography>
           <TextField
             label="Enter your career goal or interest"
             variant="outlined"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            sx={{ mt: 2, mb: 3 , width: "70%" }}
+            sx={{ mt: 2, mb: 3, width: "70%" }}
             multiline
             rows={6}
           />
-          <Button variant="contained" onClick={handleSubmit} disabled={loading} sx={{borderRadius: "15px"}}>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={loading}
+            sx={{ borderRadius: "15px" }}
+          >
             {loading ? "Loading..." : "Get Suggestions"}
           </Button>
           {courseSuggestions && (

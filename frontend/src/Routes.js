@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -14,9 +14,10 @@ import { useContext } from "react";
 const RoutesMain = () => {
   const { user } = useContext(AuthContext);
   const userRole = user?.role;
+
   return (
     <div>
-      <Router>
+
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Login />} />
@@ -35,7 +36,6 @@ const RoutesMain = () => {
             </>
           ) : null}
         </Routes>
-      </Router>
     </div>
   );
 };

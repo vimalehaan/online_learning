@@ -11,6 +11,7 @@ import {
 import TableComponent from "../Components/TableComponent";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../Components/NavBar";
+import {API_BASE_URL} from "../config";
 
 const StudentProfile = () => {
   const { token, user } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const StudentProfile = () => {
     const fetchEnrolledCourses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/courses/student/enrolled",
+          `${API_BASE_URL}/courses/student/enrolled`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

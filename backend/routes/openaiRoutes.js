@@ -4,7 +4,7 @@ const { getCourseSuggestions } = require('../Services/openaiService');
 const router = express.Router();
 
 router.post("/get-course-suggestions", async (req, res) => {
-  const { prompt } = req.body;
+  const { prompt, courses } = req.body;
   console.log(prompt)
   if (!prompt) {
     return res
@@ -17,9 +17,10 @@ router.post("/get-course-suggestions", async (req, res) => {
 
   try {
     const courseSuggestions = await getCourseSuggestions(
-      prompt
+      prompt, courses
     );
     return res.status(200).send({ courseSuggestions });
+
   } catch (error) {
     console.log(error);
     return res

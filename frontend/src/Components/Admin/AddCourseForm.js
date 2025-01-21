@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/AuthContext";
+import {API_BASE_URL} from "../../config";
 
 const AddCourseForm = ({ open, onClose, onCourseAdded }) => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const AddCourseForm = ({ open, onClose, onCourseAdded }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/courses/new",
+        `${API_BASE_URL}/courses/new`,
         formData,
         {
           headers: {
