@@ -7,13 +7,14 @@ import {
   Button,
   CircularProgress,
   Container,
-  Stack,
   Typography,
 } from "@mui/material";
 
 import { AuthContext } from "../Contexts/AuthContext";
+import NavBar from "../Components/NavBar";
 
 const CoursePage = () => {
+
   const { token, user } = useContext(AuthContext);
   const { id } = useParams();
   const [course, setCourse] = useState(null);
@@ -95,45 +96,71 @@ const CoursePage = () => {
           {error}
         </Alert>
       ) : (
-        <Container maxWidth="lg" sx={{}}>
-          <Box
-            sx={{
-              mt: 3,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <Stack direction="column" spacing={0.6}>
+        <div>
+          <NavBar />
+          <Container maxWidth="lg" sx={{}}>
+            <Box
+              sx={{
+                mt: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
               <Typography variant="h4" textAlign={"start"}>
                 {title}
               </Typography>
-              <Typography variant="subtitle1" textAlign={"start"}>
-                {`Course Description: ${description}`}
+              <Typography
+                variant="subtitle1"
+                textAlign={"start"}
+                fontWeight={"bold"}
+                sx={{ mt: 3 }}
+              >
+                Course Description:
               </Typography>
-              <Typography variant="subtitle1" textAlign={"start"}>
+              <Typography
+                variant="subtitle1"
+                textAlign={"start"}
+                sx={{ ml: 2 }}
+              >
+                {`${description}`}
+              </Typography>
+
+              <Typography
+                variant="subtitle1"
+                textAlign={"start"}
+                fontWeight={"bold"}
+                sx={{ mt: 2 }}
+              >
+                Course Content:
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                textAlign={"start"}
+                sx={{ ml: 2 }}
+              >
+                {content}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                textAlign={"start"}
+                fontWeight={"bold"}
+                sx={{ mt: 3, fontSize: "20px" }}
+              >
                 {`Instructor: ${instructor}`}
               </Typography>
-            </Stack>
-
-            <Typography variant="subtitle1" textAlign={"start"} sx={{ mt: 3 }}>
-              dgvsdfbj vsbfjkfdb fgsjknjvfdb bnsfkdjbnksrgtbg fnnsgbdgb
-              nfvsjfdbn snfjnsgb nfjbsjgbngf jsfnkbnsfdjknb bvsjfndb
-              vjbnfsjkbnsjtrb tjrg tgjsfvoi bsfjbnrti tsnbjfnvbg jdksbftrs
-              jfnbfgskdjbvg rjfndkbnsjkbf njkfdsbnfjkdvs fjnbsjbsdff fsdbjknfdbv
-              sdfjbnjsgfkbfd nsdfjbnfjnbskfb jsdnfbnsfdjknb njknsdbf
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ mt: 3 }}
-              onClick={handleEnroll}
-              disabled={isEnrolled}
-            >
-              {isEnrolled ? "Already Enrolled" : "Enroll Now"}
-            </Button>
-          </Box>
-        </Container>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ mt: 3, borderRadius: '15px' }}
+                onClick={handleEnroll}
+                disabled={isEnrolled}
+              >
+                {isEnrolled ? "Already Enrolled" : "Enroll Now"}
+              </Button>
+            </Box>
+          </Container>
+        </div>
       )}
     </div>
   );

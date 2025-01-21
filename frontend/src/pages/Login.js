@@ -41,7 +41,7 @@ const Login = () => {
         "http://localhost:3001/auth/login",
         formData,
       );
-      console.log(response.data.token);
+
       if (response.data.token) {
         const token = response.data.token;
         logIn(token);
@@ -49,7 +49,7 @@ const Login = () => {
         if (role === "student") {
           navigate("/studentdash");
         } else if (role === "instructor") {
-          navigate("/instructor-dashboard");
+          navigate("/admin");
         }
       } else {
         console.error("No token received");
@@ -71,16 +71,24 @@ const Login = () => {
   return (
     <div>
       <Container
-        maxWidth="sm"
-        sx={{ border: "1px solid black", borderRadius: "20px", boxShadow: "3" }}
+        maxWidth="md"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          height: "100vh",
+          justifyContent: "center",
+        }}
       >
         <Box
           sx={{
-            // marginTop: 8,
-            m: "30px",
+            p: 5,
+            mt: -20,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            borderRadius: "20px",
+            boxShadow: 5,
+            width: "60%",
           }}
         >
           <Typography variant="h5">Log In</Typography>

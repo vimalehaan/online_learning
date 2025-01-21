@@ -1,10 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Container, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  CircularProgress,
+  Stack, Button,
+} from "@mui/material";
 
 import CourseCard from "../Components/CourseCard";
 import axios from "axios";
 import { AuthContext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../Components/NavBar";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
@@ -45,16 +53,23 @@ const StudentDashboard = () => {
   const handleClick = (courseId) => {
     navigate(`/course/${courseId}`);
   };
+  const handleBotClick = () => {
+    navigate(`/aibot`);
+  };
 
   return (
     <div>
+      <NavBar />
       <Container maxWidth="lg" sx={{}}>
         <Box sx={{ width: "100%", minHeight: "100vh", p: 2 }}>
-          {/*<Typography variant="h5" textAlign={"start"}> {`Welcome ${user.name}`}</Typography>*/}
-          <Typography variant="h5" textAlign={"start"}>
-            {" "}
-            Courses
-          </Typography>
+          <Stack direction="row" sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="h4" textAlign={"start"} fontWeight={"600"}>
+              Courses
+            </Typography>
+            <Button variant="contained" sx={{borderRadius: "15px"}} endIcon={<SmartToyIcon />} onClick={handleBotClick}>
+              AI Bot
+            </Button>
+          </Stack>
           {loading ? (
             <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
               <CircularProgress />

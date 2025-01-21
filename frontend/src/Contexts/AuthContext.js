@@ -13,13 +13,11 @@ export const AuthProvider = ({children}) => {
         if (token) {
             const decoded = jwtDecode(token);
             setUser(decoded);
-            console.log(decoded);
         }
     }, []);
 
     const logIn = (token) => {
         Cookies.set("authToken", token);
-        console.log("Letoken", token);
         const decoded = jwtDecode(token);
         setUser(decoded);
     }
