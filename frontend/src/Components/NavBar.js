@@ -54,7 +54,7 @@ const NavBar = () => {
             sx={{ color: "#fff", fontWeight: "600", cursor: "pointer" }}
             onClick={handleHomeClick}
           >
-            Intrinstic Learning
+            Intrinsic Learning
           </Typography>
           <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
             <Typography variant="body1" sx={{ color: "#fff" }}>
