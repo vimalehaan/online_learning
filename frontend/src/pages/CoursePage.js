@@ -56,7 +56,7 @@ const CoursePage = () => {
   const handleEnroll = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3001/courses/enroll/${id}`,
+        `${API_BASE_URL}/courses/enroll/${id}`,
         {},
         {
           headers: {

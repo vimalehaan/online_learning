@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const handleDelete = async (courseId) => {
     try {
-      await axios.delete(`http://localhost:3001/courses/delete/${courseId}`, {
+      await axios.delete(`${API_BASE_URL}/courses/delete/${courseId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +60,7 @@ const Dashboard = () => {
   const handleUpdateCourse = async (updatedCourse) => {
     try {
       await axios.put(
-        `http://localhost:3001/courses/update/${updatedCourse.id}`,
+        `${API_BASE_URL}/courses/update/${updatedCourse.id}`,
         updatedCourse,
         {
           headers: {
