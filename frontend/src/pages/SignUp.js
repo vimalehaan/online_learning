@@ -59,8 +59,6 @@ const SignUp = () => {
   const handleSubmit = async () => {
     const { isValid, errors } = validateForm(formData);
     if (isValid) {
-      // Submit form logic here (e.g., API call)
-      console.log("Form submitted", formData);
       try {
         const response = await axios.post(
           `${API_BASE_URL}/auth/register`,
@@ -71,7 +69,6 @@ const SignUp = () => {
             role: formData.role,
           },
         );
-        console.log(response.data);
         navigate("/login");
       } catch (error) {
         if (error.response && error.response.status === 400) {
